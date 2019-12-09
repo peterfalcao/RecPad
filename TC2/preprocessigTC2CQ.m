@@ -33,10 +33,11 @@ d=[];  % Matriz que acumula o rotulo (identificador) do individuo
 % MtxDtrain=[];
 % Mtxtest=[]; % Matriz que acumula as imagens de teste
 % MtxDtest=[];% Matriz de rotulos de teste
-folder = 'C:\Users\pedro\Desktop\RecPad\TC2\faces\';
+%folder = 'C:\Users\pedro\Desktop\RecPad\TC2\faces\';
+ folder = 'C:\Users\LESC\Desktop\RecPad\TC2\faces\';
  count=0;
- resize=30;
- lam=0.85;
+ resize=50;
+ lam=0.0002;
 %     Mtxtrain=[];
 %     MtxDtrain=[];
 %     Mtxtest=[];
@@ -98,8 +99,9 @@ for i=1:Nind
        end
     end 
 end
-%tp=toc;
-for z=1:100
+tprocess=toc;
+tic;
+for z=1:10
 countcorr=0;
 countincorr=0;
 Mtxtrain=[];
@@ -151,15 +153,20 @@ MtxdMDC=[];
             MtxdMDC=[MtxdMDC ROTmdc];
             %RankMtx(i)=rank(CovMtx(:,:,i));
             %rest(i)=trainingcount(i)-RankMtx(i);
-            pool(:,:,i)=(cov(Xtrain'))*(trainingcount(i)/1512);
+            CovMtx(:,:,i)=cov(Xtrain');
+            pool(:,:,i)=(CovMtx(:,:,i))*(trainingcount(i)/1512);
             %
            %((Xtrain(:,1)-MtxMDC(:,1))'*cov(Xtrain')*(Xtrain(:,1)-MtxMDC(:,1)));
     end
-    pooled=inv(sum(pool,3));        
+    pooled=(sum(pool,3));
+%     for j=1:20;
+%     FMtx(:,:,j)=(((1-lam)*(j*CovMtx(:,:,j))+(lam*pooled))/(((1-lam)*j)+(lam*Nind)));
+%     end
+%     poolF=(sum(FMtx,3));
+%     poolF=inv(poolF);
     for v=1:length(MtxDtest)
         for j=1:Nind 
             a1=(Mtxtest(:,v)-MtxMDC(:,j));
-            % a2=((1-lam)*(j*CovMtx(:,:,j))+(lam*pooled))/(((1-lam)*j)+(lam*Nind));
         CQ(j)=((a1)')*(pooled)*(a1);
         end
         [m,ind]=min(CQ);
@@ -174,9 +181,9 @@ MtxdMDC=[];
     countincorrl(z)=countincorr;
 end
 accuracy=(countcorrl/length(MtxDtest))*100;
-mean(accuracy);
-median(accuracy);
-min(accuracy);
-max(accuracy);
-std(accuracy);
-time=toc;
+meanCQ=mean(accuracy);
+medianCQ=median(accuracy);
+minCQ=min(accuracy);
+maxCQ=max(accuracy);
+stdCQ=std(accuracy);
+ttrain=toc;

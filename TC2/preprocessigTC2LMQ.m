@@ -33,10 +33,10 @@ d=[];  % Matriz que acumula o rotulo (identificador) do individuo
 % MtxDtrain=[];
 % Mtxtest=[]; % Matriz que acumula as imagens de teste
 % MtxDtest=[];% Matriz de rotulos de teste
-folder = 'C:\Users\pedro\Desktop\RecPad\TC2\faces\';
+%folder = 'C:\Users\pedro\Desktop\RecPad\TC2\faces\';
+ folder = 'C:\Users\LESC\Desktop\RecPad\TC2\faces\';
  count=0;
  resize=50;
- dMLQ=[];
 %     Mtxtrain=[];
 %     MtxDtrain=[];
 %     Mtxtest=[];
@@ -98,7 +98,8 @@ for i=1:Nind
        end
     end 
 end
-%tp=toc;
+tprocess=toc;
+tic;
 for z=1:100
 countcorr=0;
 countincorr=0;
@@ -167,4 +168,4 @@ medianLMQ=median(accuracy);
 minLMQ=min(accuracy);
 maxLMQ=max(accuracy);
 stdLMQ=std(accuracy);
- time=toc;
+ttrain=toc;
