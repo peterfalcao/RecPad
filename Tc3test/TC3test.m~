@@ -6,13 +6,12 @@ kmin=2;
 kmax=10;
 nr=20;
 valueold=0;
-M=[];
  for i=kmin:kmax;
   for j=1:nr;
-  [BestProt,BestSSD,Bestlabel]=kmedias(L,i,X);     
-  M(j).prot=BestProt;
-  MinSSD(j)=BestSSD;
-  M(j).label=Bestlabel;
+  [BestProt,BestSSD,Bestlabel,value,b]=kmedias(L,i,X);     
+  MtxBestProt(:,:,j)=BestProt;
+  MtxBestSSD(:,:,j)=BestSSD;
+  MtxBestlabel(:,:,j)=BestSSD;
+
   end
-  
 end
