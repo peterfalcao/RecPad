@@ -1,4 +1,4 @@
-function [BestProt,BestSSD,Bestlabel] = kmedias(L,K,X)
+function [BestProt,value,BestSSD,Bestlabel] = kmedias(L,K,X)
 %UNTITLED2 Summary of this function goes here
 %   Detailed explanation goes here
 I=randperm(L,K);
