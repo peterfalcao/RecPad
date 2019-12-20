@@ -26,5 +26,8 @@ BestRound=[];
   DB(i-1) = calculoDB(X, BestRound(i-1).labelk, i,BestRound(i-1).protk);
   DI(i-1) = calculoDunn(X, BestRound(i-1).labelk, i,BestRound(i-1).protk);
  end
-[db,IoptDB] = min(DB);
-[di,IoptDI]=max(DI);
+% l=[];
+ 
+ 
+% [db,IoptDB] = min(DB);
+% [di,IoptDI]=max(DI);
