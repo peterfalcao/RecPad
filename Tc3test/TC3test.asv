@@ -1,14 +1,13 @@
 clear; clc; close all;
-% d=load('datasetTC3.dat');
-% load('datausermodeling.mat');
-% data = datausermodeling;
-% data = data(:,1:end-1); 
-
-X=load('datasetTC3.dat'); % Leitura do conjunto de dados
+d=load('datasetTC3.dat');
+load('datausermodeling.mat');
+data = datausermodeling;
+data = data(:,1:end-1); % Removendo os rótulos
+X=load('datasetTC31.dat'); % Leitura do conjunto de dados
 [X,L,C]=normalData(X);
 kmin=2;
 kmax=10;
-nr=5;
+nr=10;
 valueold=0;
 ListRound=[];
 BestRound=[];
